@@ -46,7 +46,7 @@ export function ThemeProvider({
         card: dark ? "bg-[#1a1a2e] border-white/5" : "bg-white border-slate-200",
         header: dark ? "bg-[#12122a]/80 border-white/5" : "bg-white/40",
         hBtn: dark ? "bg-white/10 border-white/10 text-white/60" : "bg-white border-gray-100 text-gray-400",
-        walletPill: dark ? "bg-white/10 border-white/10" : "bg-white border-gray-100",
+        walletPill: dark ? "bg-white/10 border-white/10" : "bg-gray-50/80 border-gray-200",
         divider: dark ? "border-white/10" : "border-gray-100",
         sideActive: "bg-[#3B2963] text-white",
         gridLine: dark ? "border-white/5" : "border-gray-50",

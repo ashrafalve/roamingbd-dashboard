@@ -37,15 +37,25 @@ export function Header({
 
             <div className="flex items-center gap-5">
                 {/* Wallet */}
-                <div className={cn("px-2 lg:px-5 py-2 lg:py-4 rounded-sm border shadow-sm flex items-center gap-1.5 lg:gap-4 transition-colors duration-300", d.walletPill)}>
-                    <div className={cn("p-1.5 rounded-sm shrink-0", dark ? "bg-white/10" : "bg-gray-50")}>
-                        <Image src={dark ? "/icons/walletwhite.png" : "/icons/walletcoloredicon.png"} alt="Wallet" width={24} height={24} style={{ width: "auto", height: "auto" }} />
+                <div className={cn("px-3 lg:px-4 py-2 lg:py-2.5 rounded-sm border shadow-sm flex items-center gap-2 lg:gap-3 transition-colors duration-300", d.walletPill)}>
+                    <div className={cn("p-1.5 rounded-sm shrink-0 flex items-center justify-center w-10 h-10", dark ? "bg-white/10" : "bg-[#3B2963]/10")}>
+                        <Image
+                            src={dark ? "/icons/walletwhite.png" : "/icons/purplewallet.png"}
+                            alt="Wallet"
+                            width={28}
+                            height={28}
+                            style={{
+                                width: "auto",
+                                height: "auto",
+                                filter: dark ? "brightness(0) invert(1)" : "none"
+                            }}
+                        />
                     </div>
                     <div className="leading-tight">
-                        <p className={cn("text-[7px] lg:text-[9px] font-black uppercase tracking-widest leading-none mb-1", d.text)}>Wallet</p>
-                        <p className={cn("text-[10px] lg:text-[13px] font-black whitespace-nowrap", d.text)}>BDT 125,750</p>
+                        <p className={cn("text-[7px] lg:text-[9px] font-black uppercase tracking-widest leading-none mb-0.5", d.text)}>Wallet</p>
+                        <p className={cn("text-[11px] lg:text-[13px] font-black whitespace-nowrap", d.text)}>BDT 125,750</p>
                     </div>
-                    <ChevronRight className={cn("w-4 h-4 ml-2 lg:ml-4 hidden sm:block", d.subText)} />
+                    <ChevronRight className={cn("w-4 h-4 ml-1 lg:ml-2 hidden sm:block", d.subText)} />
                 </div>
 
                 {/* Dark Mode Toggle */}
