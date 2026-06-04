@@ -12,7 +12,7 @@ const notifications = [
 ];
 
 export function Notifications() {
-    const { d } = useTheme();
+    const { dark, d } = useTheme();
 
     return (
         <div className={cn("p-6 rounded-sm border shadow-sm flex flex-col h-[320px] transition-colors duration-300", d.card)}>
@@ -51,7 +51,7 @@ export function Notifications() {
                                 <h4 className={cn("text-[11px] font-black truncate", d.text)}>{notif.title}</h4>
                                 <span className={cn("text-[9px] font-bold shrink-0", d.subText)}>{notif.time}</span>
                             </div>
-                            <p className={cn("text-[10px] font-bold", d.subText)}>{notif.desc}</p>
+                            <p className={cn("text-[10px] font-bold transition-colors", dark ? "text-[#a27df0]" : "text-[#5C21DF]")}>{notif.desc}</p>
                         </div>
                     </div>
                 ))}

@@ -20,7 +20,7 @@ export function Footer() {
             </div>
             <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-8">
                 <div className="flex items-center gap-2 text-emerald-500"><ShieldCheck className="w-4 h-4" /> Secure</div>
-                <div className="text-center lg:text-left">Roaming Bangladesh © 2024 All rights reserved.</div>
+                <div className="text-center lg:text-left">Roaming Bangladesh © 2026 All rights reserved.</div>
             </div>
         </div>
     );

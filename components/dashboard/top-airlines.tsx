@@ -34,7 +34,12 @@ export function TopAirlines() {
                                 <span className={cn("shrink-0", d.subText)}>{a.bookings} Bookings</span>
                             </div>
                             <div className={cn("h-1.5 w-full rounded-full overflow-hidden", d.barBg)}>
-                                <motion.div initial={{ width: 0 }} animate={{ width: `${a.bookings * 1.6}%` }} className="h-full bg-[#3B2963] rounded-full" />
+                                <motion.div
+                                    initial={{ width: 0 }}
+                                    animate={{ width: `${a.bookings * 1.6}%` }}
+                                    transition={{ duration: 1, ease: "easeOut", delay: i * 0.1 }}
+                                    className="h-full bg-[#3B2963] rounded-full"
+                                />
                             </div>
                         </div>
                     </div>

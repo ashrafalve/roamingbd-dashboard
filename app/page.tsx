@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
@@ -21,7 +22,12 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#eef0f8] font-archivo flex items-center justify-center overflow-y-auto p-0 lg:p-4">
+    <div className="min-h-screen w-full relative lg:bg-[#eef0f8] font-archivo flex items-center justify-center overflow-y-auto p-4 lg:p-4">
+      {/* Background Image purely for Mobile */}
+      <div className="absolute inset-0 z-0 lg:hidden">
+        <Image src="/images/loginpageimage.png" alt="Bg" fill className="object-cover brightness-[0.3]" priority />
+      </div>
+
       <AnimatePresence mode="wait">
         {!isExiting ? (
           <motion.div
@@ -29,13 +35,17 @@ export default function LoginPage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ x: "-100%", opacity: 0, transition: { duration: 0.8, ease: "easeInOut" } }}
-            className="w-full lg:max-w-[1480px] h-auto lg:h-[98vh] lg:min-h-[650px] bg-white lg:rounded-[2rem] lg:shadow-2xl flex flex-col relative z-20"
+            className="w-full max-w-[450px] lg:max-w-[1480px] h-auto lg:h-[98vh] lg:min-h-[650px] bg-white rounded-2xl lg:rounded-[2rem] shadow-2xl flex flex-col relative z-20 lg:overflow-visible"
           >
             <div className="flex-1 flex flex-col lg:flex-row min-h-0 lg:overflow-hidden">
-              <HeroPanel />
+              <div className="hidden lg:contents">
+                <HeroPanel />
+              </div>
               <LoginForm onSignIn={handleSignIn} />
             </div>
-            <PartnerScrolls />
+            <div className="hidden lg:block">
+              <PartnerScrolls />
+            </div>
           </motion.div>
         ) : (
           <LoadingScreen />

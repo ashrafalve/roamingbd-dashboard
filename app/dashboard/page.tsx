@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ThemeProvider, useTheme } from "@/lib/theme-context";
 import { Sidebar } from "@/components/dashboard/sidebar";
 import { Header } from "@/components/dashboard/header";
@@ -42,7 +42,12 @@ function DashboardContent({
     const { d } = useTheme();
 
     return (
-        <div className={cn("flex h-screen font-archivo overflow-hidden transition-colors duration-500", d.pageBg, d.text)}>
+        <motion.div
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className={cn("flex h-screen font-archivo overflow-hidden transition-colors duration-500 w-full", d.pageBg, d.text)}
+        >
             {/* Backdrop for mobile */}
             <AnimatePresence>
                 {mobileMenuOpen && (
@@ -92,6 +97,6 @@ function DashboardContent({
                     <Footer />
                 </div>
             </main>
-        </div >
+        </motion.div>
     );
 }

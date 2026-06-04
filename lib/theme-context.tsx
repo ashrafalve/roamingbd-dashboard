@@ -42,7 +42,7 @@ export function ThemeProvider({
     const d = {
         pageBg: dark ? "bg-[#0f0f1a]" : "bg-[#F0F2F8]",
         text: dark ? "text-white" : "text-[#3B2963]",
-        subText: dark ? "text-white/40" : "text-gray-400",
+        subText: dark ? "text-[#a27df0]" : "text-[#5C21DF]",
         card: dark ? "bg-[#1a1a2e] border-white/5" : "bg-white border-slate-200",
         header: dark ? "bg-[#12122a]/80 border-white/5" : "bg-white/40",
         hBtn: dark ? "bg-white/10 border-white/10 text-white/60" : "bg-white border-gray-100 text-gray-400",

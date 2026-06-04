@@ -1,14 +1,15 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useTheme } from "@/lib/theme-context";
 import { cn } from "@/lib/utils";
 
 const services = [
-    { label: "Flights", value: "68% (174)", color: "#3B2963" },
-    { label: "Hotels", value: "18% (46)", color: "#00C420" },
-    { label: "Visa", value: "8% (20)", color: "#2E6CFD" },
-    { label: "Tours", value: "4% (10)", color: "#6720EA" },
-    { label: "Umrah", value: "2% (6)", color: "#F97E20" },
+    { label: "Flights", value: "68% (174)", color: "#3B2963", offset: 80 },
+    { label: "Hotels", value: "18% (46)", color: "#00C420", offset: 180 },
+    { label: "Visa", value: "8% (20)", color: "#2E6CFD", offset: 220 },
+    { label: "Tours", value: "4% (10)", color: "#6720EA", offset: 240 },
+    { label: "Umrah", value: "2% (6)", color: "#F97E20", offset: 246 },
 ];
 
 export function BookingByService() {
@@ -21,11 +22,21 @@ export function BookingByService() {
                 <div className="relative w-40 h-40 shrink-0">
                     <svg viewBox="0 0 100 100" className="w-full h-full transform -rotate-90">
                         <circle cx="50" cy="50" r="40" fill="transparent" stroke={dark ? "#ffffff15" : "#E2E8F0"} strokeWidth="18" />
-                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#3B2963" strokeWidth="18" strokeDasharray="251" strokeDashoffset="80" />
-                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#00C420" strokeWidth="18" strokeDasharray="251" strokeDashoffset="180" />
-                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#2E6CFD" strokeWidth="18" strokeDasharray="251" strokeDashoffset="220" />
-                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#6720EA" strokeWidth="18" strokeDasharray="251" strokeDashoffset="240" />
-                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#F97E20" strokeWidth="18" strokeDasharray="251" strokeDashoffset="246" />
+                        {services.map((svc, i) => (
+                            <motion.circle
+                                key={svc.label}
+                                cx="50"
+                                cy="50"
+                                r="40"
+                                fill="transparent"
+                                stroke={svc.color}
+                                strokeWidth="18"
+                                strokeDasharray="251"
+                                initial={{ strokeDashoffset: 251 }}
+                                animate={{ strokeDashoffset: svc.offset }}
+                                transition={{ duration: 1.5, ease: "easeOut", delay: i * 0.1 }}
+                            />
+                        ))}
                     </svg>
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
                         <span className={cn("text-2xl font-black", d.text)}>256</span>

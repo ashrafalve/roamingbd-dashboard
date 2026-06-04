@@ -29,7 +29,7 @@ export function Header({
                 <div className="hidden sm:block">
                     <h2 className={cn("text-[16px] lg:text-[20px] font-black leading-tight flex items-center gap-2", d.text)}>
                         Good Morning, Sarah Dossier
-                        <Image src="/icons/hi.png" alt="hi" width={24} height={24} className="inline-block" style={{ width: "auto", height: "auto" }} />
+                        <Image src="/icons/hi.png" alt="hi" width={28} height={28} className="inline-block" style={{ width: "auto", height: "auto" }} />
                     </h2>
                     <p className={cn("text-[10px] lg:text-[12px] font-bold mt-1", d.subText)}>Here&apos;s what happening with your business today.</p>
                 </div>
@@ -39,7 +39,7 @@ export function Header({
                 {/* Wallet */}
                 <div className={cn("px-2 lg:px-5 py-2 lg:py-4 rounded-sm border shadow-sm flex items-center gap-1.5 lg:gap-4 transition-colors duration-300", d.walletPill)}>
                     <div className={cn("p-1.5 rounded-sm shrink-0", dark ? "bg-white/10" : "bg-gray-50")}>
-                        <Image src="/icons/walletcoloredicon.png" alt="Wallet" width={18} height={18} style={{ width: "auto", height: "auto" }} />
+                        <Image src={dark ? "/icons/walletwhite.png" : "/icons/walletcoloredicon.png"} alt="Wallet" width={24} height={24} style={{ width: "auto", height: "auto" }} />
                     </div>
                     <div className="leading-tight">
                         <p className={cn("text-[7px] lg:text-[9px] font-black uppercase tracking-widest leading-none mb-1", d.text)}>Wallet</p>
@@ -52,29 +52,29 @@ export function Header({
                 <button
                     onClick={() => setDark(!dark)}
                     className={cn(
-                        "relative w-[44px] lg:w-[52px] h-[24px] lg:h-[28px] rounded-full border transition-all duration-500 flex items-center px-1 shrink-0",
-                        dark ? "bg-[#3B2963] border-[#3B2963]" : "bg-gray-100 border-gray-200"
+                        "relative w-[50px] lg:w-[60px] h-[28px] lg:h-[32px] rounded-full border transition-all duration-500 flex items-center px-1 shrink-0",
+                        dark ? "bg-[#3B2963] border-[#2a1d49]" : "bg-gray-100 border-gray-300"
                     )}
                 >
                     <motion.div
                         layout
                         transition={{ type: "spring", stiffness: 500, damping: 35 }}
                         className={cn(
-                            "w-5 h-5 rounded-full flex items-center justify-center shadow-md",
+                            "w-6 h-6 lg:w-7 lg:h-7 rounded-full flex items-center justify-center shadow-md",
                             dark ? "bg-white ml-auto" : "bg-white ml-0"
                         )}
                     >
                         {dark
-                            ? <Moon className="w-3 h-3 text-[#3B2963]" />
-                            : <Sun className="w-3 h-3 text-amber-500" />
+                            ? <Moon className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#3B2963]" />
+                            : <Sun className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-amber-500" />
                         }
                     </motion.div>
                 </button>
 
                 {/* Bell */}
-                <button className={cn("w-9 h-9 lg:w-11 lg:h-11 rounded-full flex items-center justify-center relative border shadow-sm transition-colors duration-300", d.hBtn)}>
-                    <Bell className={cn("w-5 h-5", dark ? "text-white" : "text-[#3B2963]")} />
-                    <div className="absolute top-0 right-0 bg-[#3B2963] text-white text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center border-2 border-white">8</div>
+                <button className={cn("w-10 h-10 lg:w-12 lg:h-12 rounded-full flex items-center justify-center relative border shadow-sm transition-colors duration-300", d.hBtn)}>
+                    <Bell className={cn("w-6 h-6", dark ? "text-white" : "text-[#3B2963]")} />
+                    <div className="absolute top-0 lg:-top-1 right-0 lg:-right-1 bg-[#3B2963] text-white text-[9px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white lg:scale-110">8</div>
                 </button>
 
                 {/* Profile Dropdown */}

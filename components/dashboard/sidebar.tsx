@@ -43,7 +43,7 @@ export function Sidebar({
         )}>
             <div className="p-8 h-full flex flex-col">
                 <div className="mb-10 pl-2 shrink-0 flex items-center justify-between">
-                    <Image src="/icons/roaminglogo.png" alt="Logo" width={140} height={35} className="object-contain" style={{ height: "auto" }} />
+                    <Image src="/icons/roaminglogo.png" alt="Logo" width={140} height={35} className="object-contain" style={{ width: "auto", height: "auto" }} />
                     <button onClick={() => setMobileMenuOpen(false)} className="lg:hidden p-2 text-white/40 hover:text-white">
                         <ChevronRight className="w-5 h-5 rotate-180" />
                     </button>

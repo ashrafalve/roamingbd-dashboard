@@ -29,7 +29,7 @@ export function Reminders() {
 
                             <div className="leading-tight py-0.5">
                                 <h4 className={cn("text-[11px] font-black", d.text)}>{rem.name}</h4>
-                                <p className={cn("text-[9px] font-bold mt-1", d.subText)}>{rem.sub}</p>
+                                <p className={cn("text-[9px] font-bold mt-1 transition-colors", dark ? "text-[#a27df0]" : "text-[#5C21DF]")}>{rem.sub}</p>
                             </div>
                         </div>
                         <span className={cn("px-2 py-1 rounded-lg text-[8px] font-black uppercase tracking-tighter", rem.color)}>{rem.badge}</span>

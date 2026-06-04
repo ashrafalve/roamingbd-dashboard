@@ -26,7 +26,7 @@ export function HeroPanel() {
                 className="relative z-10 flex flex-col h-full p-6 lg:p-10 xl:px-16 xl:py-12 gap-8 lg:gap-10"
             >
                 <div>
-                    <Image src="/icons/roaminglogo.png" alt="Roaming Bangladesh" width={140} height={40} className="object-contain brightness-125 mb-1.5" style={{ height: "auto" }} />
+                    <Image src="/icons/roaminglogo.png" alt="Roaming Bangladesh" width={140} height={40} className="object-contain brightness-125 mb-1.5" style={{ width: "auto", height: "auto" }} />
                     <p className="text-[7px] lg:text-[8px] font-black tracking-[0.42em] text-white/55 uppercase">B2B Travel Marketplace</p>
                 </div>
 
