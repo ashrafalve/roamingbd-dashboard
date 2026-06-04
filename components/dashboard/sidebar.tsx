@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Wallet } from "lucide-react";
 import { motion } from "framer-motion";
 import { useTheme } from "@/lib/theme-context";
 import { cn } from "@/lib/utils";
@@ -27,24 +27,28 @@ export function Sidebar({
     activeItem,
     setActiveItem,
     mobileMenuOpen,
-    setMobileMenuOpen
+    setMobileMenuOpen,
+    sidebarOpen,
+    setSidebarOpen
 }: {
     activeItem: string;
     setActiveItem: (val: string) => void;
     mobileMenuOpen: boolean;
     setMobileMenuOpen: (val: boolean) => void;
+    sidebarOpen: boolean;
+    setSidebarOpen: (val: boolean) => void;
 }) {
     const { d } = useTheme();
 
     return (
         <aside className={cn(
-            "fixed inset-y-0 left-0 z-50 w-[280px] bg-[#0E0B64] text-white flex flex-col shrink-0 overflow-hidden shadow-2xl transition-transform duration-300 lg:relative lg:translate-x-0",
-            mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+            "fixed inset-y-0 left-0 z-50 w-[280px] bg-[#0E0B64] text-white flex flex-col shrink-0 overflow-hidden shadow-2xl transition-transform duration-300",
+            sidebarOpen ? "translate-x-0" : "-translate-x-full"
         )}>
             <div className="p-8 h-full flex flex-col">
                 <div className="mb-10 pl-2 shrink-0 flex items-center justify-between">
                     <Image src="/icons/roaminglogo.png" alt="Logo" width={140} height={35} className="object-contain" style={{ width: "auto", height: "auto" }} />
-                    <button onClick={() => setMobileMenuOpen(false)} className="lg:hidden p-2 text-white/40 hover:text-white">
+                    <button onClick={() => { setSidebarOpen(false); setMobileMenuOpen(false); }} className="p-2 text-white/40 hover:text-white">
                         <ChevronRight className="w-5 h-5 rotate-180" />
                     </button>
                 </div>
@@ -79,14 +83,18 @@ export function Sidebar({
                                         "w-6 h-6 flex items-center justify-center transition-all",
                                         isActive ? "opacity-100" : "opacity-40 group-hover:opacity-70"
                                     )}>
-                                        <Image
-                                            src={item.icon}
-                                            alt={item.name}
-                                            width={22}
-                                            height={22}
-                                            className="brightness-0 invert object-contain"
-                                            style={{ width: "auto", height: "auto" }}
-                                        />
+                                        {item.icon === "/icons/walletwhite.png" ? (
+                                            <Wallet className="w-5 h-5" />
+                                        ) : (
+                                            <Image
+                                                src={item.icon}
+                                                alt={item.name}
+                                                width={22}
+                                                height={22}
+                                                className="brightness-0 invert object-contain"
+                                                style={{ width: "auto", height: "auto" }}
+                                            />
+                                        )}
                                     </div>
                                     <span className={cn(
                                         "text-[13px] font-bold tracking-tight transition-colors",

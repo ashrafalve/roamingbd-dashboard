@@ -19,7 +19,7 @@ export function StatsGrid() {
     const [statsItems, setStatsItems] = useState(initialStats);
 
     return (
-        <Reorder.Group axis="x" values={statsItems} onReorder={setStatsItems} className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+        <Reorder.Group axis="x" values={statsItems} onReorder={setStatsItems} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
             {statsItems.map((stat) => (
                 <Reorder.Item
                     key={stat.title}
@@ -31,9 +31,9 @@ export function StatsGrid() {
                             <Image src={stat.icon} alt={stat.title} width={40} height={40} style={{ width: "auto", height: "auto" }} className="brightness-0 invert" />
                         </div>
                     </div>
-                    <div className="space-y-1">
-                        <p className={cn("text-[8px] font-black uppercase tracking-widest leading-none mb-1", d.text)}>{stat.title}</p>
-                        <h3 className={cn("text-[14px] sm:text-[16px] font-black tracking-tight leading-none mb-1 truncate max-w-[120px] sm:max-w-none", d.text)}>{stat.value}</h3>
+                        <div className="space-y-1">
+                            <p className={cn("text-[7px] sm:text-[8px] font-black uppercase tracking-widest leading-none mb-1", d.text)}>{stat.title}</p>
+                            <h3 className={cn("text-[12px] sm:text-[14px] font-black tracking-tight leading-none mb-1 truncate", d.text)}>{stat.value}</h3>
                         <div className="flex items-center gap-1.5">
                             {stat.change && <span className="text-[9px] font-black flex items-center gap-0.5 text-emerald-500"><TrendingUp className="w-2.5 h-2.5" /> {stat.change}</span>}
                             <span className={cn("text-[8px] font-bold uppercase tracking-tighter", d.subText)}>{stat.subtext}</span>

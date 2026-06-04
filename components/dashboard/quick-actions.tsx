@@ -18,17 +18,17 @@ export function QuickActions() {
     const { d } = useTheme();
 
     return (
-        <div className={cn("col-span-1 lg:col-span-5 p-5 rounded-sm border shadow-sm flex flex-col transition-colors duration-300", d.card)}>
-            <h2 className={cn("text-[20px] font-black mb-6 tracking-tight", d.text)}>Quick Actions</h2>
-            <div className="flex-1 grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 gap-3">
+        <div className={cn("col-span-1 lg:col-span-5 p-4 lg:p-5 rounded-sm border shadow-sm flex flex-col transition-colors duration-300 overflow-hidden", d.card)}>
+            <h2 className={cn("text-[16px] lg:text-[18px] font-black mb-4 tracking-tight shrink-0", d.text)}>Quick Actions</h2>
+            <div className="flex-1 grid grid-cols-2 xl:grid-cols-4 gap-2 lg:gap-3 content-start">
                 {actions.map((action, i) => (
-                    <button key={i} className={cn("flex flex-col items-center justify-center p-3 rounded-md border transition-all gap-2 group/action hover:shadow-md", d.actionCard, d.actionHov)}>
+                    <button key={i} className={cn("flex flex-col items-center justify-center p-1.5 lg:p-2.5 rounded-md border transition-all gap-1 group/action hover:shadow-md min-w-0", d.actionCard, d.actionHov)}>
                         <div
-                            className="w-12 h-12 rounded-[18px] flex items-center justify-center transition-transform group-hover/action:scale-105"
+                            className="w-9 h-9 lg:w-11 lg:h-11 rounded-[14px] flex items-center justify-center shrink-0 transition-transform group-hover/action:scale-105"
                             style={{ backgroundColor: `${action.color}1A` }}
                         >
                             <div
-                                className="w-6 h-6"
+                                className="w-5 h-5 lg:w-5 lg:h-5 shrink-0"
                                 style={{
                                     backgroundColor: action.color,
                                     maskImage: `url(${action.icon})`,
@@ -42,10 +42,11 @@ export function QuickActions() {
                                 }}
                             />
                         </div>
-                        <span className={cn("text-[11px] font-black text-center leading-tight whitespace-normal", d.text)}>{action.name}</span>
+                        <span className={cn("text-[9px] lg:text-[10px] font-black text-center leading-tight break-words w-full px-1", d.text)}>{action.name}</span>
                     </button>
                 ))}
             </div>
         </div>
     );
 }
+

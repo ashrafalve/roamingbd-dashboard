@@ -9,9 +9,13 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export function Header({
-    setMobileMenuOpen
+    setMobileMenuOpen,
+    sidebarOpen,
+    setSidebarOpen
 }: {
     setMobileMenuOpen: (val: boolean) => void;
+    sidebarOpen: boolean;
+    setSidebarOpen: (val: boolean) => void;
 }) {
     const { dark, setDark, d } = useTheme();
     const [profileOpen, setProfileOpen] = useState(false);
@@ -19,43 +23,48 @@ export function Header({
 
     return (
         <header className={cn("h-[70px] lg:h-[90px] shrink-0 px-3 lg:px-10 flex items-center justify-between backdrop-blur-md z-30 border-b transition-colors duration-500", d.header, d.divider)}>
-            <div className="flex items-center gap-4 lg:gap-6">
+            <div className="flex items-center gap-3 lg:gap-4">
                 <button
-                    onClick={() => setMobileMenuOpen(true)}
-                    className={cn("w-11 h-11 rounded-full flex items-center justify-center shadow-sm border transition-colors duration-300 lg:hidden", d.hBtn)}
+                    onClick={() => { setMobileMenuOpen(true); setSidebarOpen(true); }}
+                    className={cn("w-10 h-10 rounded-full flex items-center justify-center shadow-sm border transition-colors duration-300 lg:hidden", d.hBtn)}
                 >
                     <Menu className="w-5 h-5" />
                 </button>
-                <div className="hidden sm:block">
-                    <h2 className={cn("text-[16px] lg:text-[20px] font-black leading-tight flex items-center gap-2", d.text)}>
+                <button
+                    onClick={() => setSidebarOpen(!sidebarOpen)}
+                    className={cn("hidden lg:flex w-10 h-10 rounded-full items-center justify-center shadow-sm border transition-colors duration-300", d.hBtn)}
+                >
+                    <Menu className="w-5 h-5" />
+                </button>
+                <div className="hidden md:block">
+                    <h2 className={cn("text-[14px] lg:text-[16px] xl:text-[20px] font-black leading-tight flex items-center gap-2", d.text)}>
                         Good Morning, Sarah Dossier
-                        <Image src="/icons/hi.png" alt="hi" width={28} height={28} className="inline-block" style={{ width: "auto", height: "auto" }} />
+                        <Image src="/icons/hi.png" alt="hi" width={28} height={28} className="w-5 h-5 lg:w-7 lg:h-7 xl:w-7 xl:h-7 inline-block" style={{ width: "auto", height: "auto" }} />
                     </h2>
-                    <p className={cn("text-[10px] lg:text-[12px] font-bold mt-1", d.subText)}>Here&apos;s what happening with your business today.</p>
+                    <p className={cn("text-[9px] lg:text-[10px] xl:text-[12px] font-bold mt-1", d.subText)}>Here&apos;s what happening with your business today.</p>
                 </div>
             </div>
 
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-3 lg:gap-5">
                 {/* Wallet */}
-                <div className={cn("px-3 lg:px-4 py-2 lg:py-2.5 rounded-sm border shadow-sm flex items-center gap-2 lg:gap-3 transition-colors duration-300", d.walletPill)}>
-                    <div className={cn("p-1.5 rounded-sm shrink-0 flex items-center justify-center w-10 h-10", dark ? "bg-white/10" : "bg-[#3B2963]/10")}>
+                <div className={cn("hidden md:flex px-3 lg:px-4 py-2 lg:py-2.5 rounded-sm border shadow-sm items-center gap-2 lg:gap-3 transition-colors duration-300", d.walletPill)}>
+                    <div className={cn("p-1.5 rounded-sm shrink-0 flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10", dark ? "bg-white/10" : "bg-[#3B2963]/10")}>
                         <Image
                             src={dark ? "/icons/walletwhite.png" : "/icons/purplewallet.png"}
                             alt="Wallet"
                             width={28}
                             height={28}
+                            className="w-4 h-4 lg:w-5 lg:h-5"
                             style={{
-                                width: "auto",
-                                height: "auto",
                                 filter: dark ? "brightness(0) invert(1)" : "none"
                             }}
                         />
                     </div>
                     <div className="leading-tight">
-                        <p className={cn("text-[7px] lg:text-[9px] font-black uppercase tracking-widest leading-none mb-0.5", d.text)}>Wallet</p>
-                        <p className={cn("text-[11px] lg:text-[13px] font-black whitespace-nowrap", d.text)}>BDT 125,750</p>
+                        <p className={cn("text-[6px] lg:text-[7px] xl:text-[9px] font-black uppercase tracking-widest leading-none mb-0.5", d.text)}>Wallet</p>
+                        <p className={cn("text-[10px] lg:text-[11px] xl:text-[13px] font-black whitespace-nowrap", d.text)}>BDT 125,750</p>
                     </div>
-                    <ChevronRight className={cn("w-4 h-4 ml-1 lg:ml-2 hidden sm:block", d.subText)} />
+                    <ChevronRight className={cn("w-3 h-3 lg:w-4 lg:h-4 hidden lg:block", d.subText)} />
                 </div>
 
                 {/* Dark Mode Toggle */}
@@ -82,9 +91,9 @@ export function Header({
                 </button>
 
                 {/* Bell */}
-                <button className={cn("w-10 h-10 lg:w-12 lg:h-12 rounded-full flex items-center justify-center relative border shadow-sm transition-colors duration-300", d.hBtn)}>
-                    <Bell className={cn("w-6 h-6", dark ? "text-white" : "text-[#3B2963]")} />
-                    <div className="absolute top-0 lg:-top-1 right-0 lg:-right-1 bg-[#3B2963] text-white text-[9px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white lg:scale-110">8</div>
+                <button className={cn("w-9 h-9 lg:w-10 lg:h-10 xl:w-12 xl:h-12 rounded-full flex items-center justify-center relative border shadow-sm transition-colors duration-300", d.hBtn)}>
+                    <Bell className={cn("w-5 h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6", dark ? "text-white" : "text-[#3B2963]")} />
+                    <div className="absolute top-0 lg:-top-1 right-0 lg:-right-1 bg-[#3B2963] text-white text-[8px] lg:text-[9px] font-black w-4 h-4 lg:w-5 lg:h-5 rounded-full flex items-center justify-center border-2 border-white lg:scale-110">8</div>
                 </button>
 
                 {/* Profile Dropdown */}
@@ -93,9 +102,9 @@ export function Header({
                         onClick={() => setProfileOpen(!profileOpen)}
                         className={cn("flex items-center gap-3 pl-4 border-l transition-colors duration-300", d.divider)}
                     >
-                        <div className="text-right leading-none hidden sm:block">
-                            <p className={cn("text-[13px] font-black", d.text)}>Sarah Dossier</p>
-                            <p className={cn("text-[10px] font-bold mt-1", d.subText)}>Premium Agent</p>
+                        <div className="text-right leading-none hidden md:block">
+                            <p className={cn("text-[11px] lg:text-[12px] xl:text-[13px] font-black", d.text)}>Sarah Dossier</p>
+                            <p className={cn("text-[8px] lg:text-[9px] xl:text-[10px] font-bold mt-1", d.subText)}>Premium Agent</p>
                         </div>
                         <div className="relative group">
                             <div className={cn("w-9 h-9 lg:w-11 lg:h-11 rounded-full border-2 overflow-hidden transition-all", profileOpen ? (dark ? "border-white" : "border-[#3B2963]") : "border-transparent px-0.5 shadow-md")}>

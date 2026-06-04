@@ -12,7 +12,7 @@ export function LoginForm({ onSignIn }: { onSignIn: (e?: React.FormEvent) => voi
     const [rememberMe, setRememberMe] = useState(false);
 
     return (
-        <div className="flex-1 flex flex-col bg-white p-6 lg:p-0">
+        <div className="flex-1 flex flex-col bg-white overflow-y-auto">
             <div className="hidden lg:flex justify-end p-5 shrink-0">
                 <button className="flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-sm text-[11px] font-bold text-[#3B2963] bg-white shadow-sm transition-colors hover:bg-slate-50">
                     <div className="w-2.5 h-2.5 rounded-full border-2 border-blue-400/40 flex items-center justify-center"><div className="w-1 h-1 bg-blue-600 rounded-full" /></div>

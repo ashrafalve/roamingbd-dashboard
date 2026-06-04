@@ -73,20 +73,20 @@ export function SalesOverview() {
 
     return (
         <div className={cn("col-span-1 lg:col-span-7 rounded-sm border shadow-sm flex flex-col overflow-hidden transition-colors duration-300", d.card)}>
-            <div className="flex items-center justify-between px-6 pt-5 pb-2">
-                <h3 className={cn("text-[14px] font-black", d.text)}>Sales Overview</h3>
+            <div className={cn("flex items-center justify-between px-4 pt-4 pb-2", d.subText)}>
+                <h3 className={cn("text-[12px] sm:text-[14px] font-black", d.text)}>Sales Overview</h3>
                 <div className="flex items-center gap-5">
-                    <div className={cn("flex items-center gap-5 text-[9px] font-bold", d.subText)}>
-                        <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-indigo-600" /> Sales (BDT)</div>
-                        <div className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full bg-emerald-500" /> Profit (BDT)</div>
-                    </div>
+                        <div className={cn("flex items-center gap-3 sm:gap-4 text-[7px] sm:text-[8px] md:text-[9px] font-bold", d.subText)}>
+                            <div className="flex items-center gap-1"><div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-indigo-600" /> Sales (BDT)</div>
+                            <div className="flex items-center gap-1"><div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500" /> Profit (BDT)</div>
+                        </div>
                     <div className="relative">
                         <button
                             onClick={() => setDropdownOpen(!dropdownOpen)}
-                            className={cn("px-3 py-1.5 rounded-lg border flex items-center gap-1.5 cursor-pointer transition-colors", dark ? "bg-white/10 border-white/10" : "bg-gray-50 border-gray-200")}
+                            className={cn("px-2 py-1 rounded border flex items-center gap-1 cursor-pointer transition-colors text-[9px] sm:text-[10px]", dark ? "bg-white/10 border-white/10" : "bg-gray-50 border-gray-200")}
                         >
-                            <span className={cn("text-[10px] font-black", d.text)}>{selectedMonth}</span>
-                            <ChevronDown className={cn("w-3 h-3", d.subText)} />
+                            <span className={cn("font-black", d.text)}>{selectedMonth}</span>
+                            <ChevronDown className={cn("w-2.5 h-2.5 sm:w-3 sm:h-3", d.subText)} />
                         </button>
                         {dropdownOpen && (
                             <div className={cn("absolute top-full right-0 mt-1 w-36 rounded-lg border shadow-lg z-50 py-1.5 transition-colors duration-300", dark ? "bg-[#1a1a5b] border-white/10" : "bg-white border-gray-100")}>
@@ -108,8 +108,8 @@ export function SalesOverview() {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-1 px-4 pb-4">
-                <div className={cn("flex flex-col justify-between text-[9px] font-bold pr-2 pb-5 text-right shrink-0 w-10", d.subText)}>
+            <div className="flex flex-1 px-3 pb-3">
+                <div className={cn("flex flex-col justify-between text-[8px] sm:text-[9px] font-bold pr-1 pb-4 text-right shrink-0 w-8 sm:w-10", d.subText)}>
                     <span>500K</span><span>400K</span><span>300K</span><span>200K</span><span>100K</span><span>0</span>
                 </div>
                 <div className="flex-1 flex flex-col relative w-full h-full">

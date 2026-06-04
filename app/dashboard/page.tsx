@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ThemeProvider, useTheme } from "@/lib/theme-context";
 import { Sidebar } from "@/components/dashboard/sidebar";
@@ -15,11 +15,13 @@ import { Reminders } from "@/components/dashboard/reminders";
 import { PremiumBanner } from "@/components/dashboard/premium-banner";
 import { Footer } from "@/components/dashboard/footer";
 import { cn } from "@/lib/utils";
+import { ChevronRight } from "lucide-react";
 
 export default function DashboardPage() {
     const [activeItem, setActiveItem] = useState("Dashboard");
     const [dark, setDark] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
         <ThemeProvider dark={dark} setDark={setDark}>
@@ -28,6 +30,8 @@ export default function DashboardPage() {
                 setActiveItem={setActiveItem}
                 mobileMenuOpen={mobileMenuOpen}
                 setMobileMenuOpen={setMobileMenuOpen}
+                sidebarOpen={sidebarOpen}
+                setSidebarOpen={setSidebarOpen}
             />
         </ThemeProvider>
     );
@@ -37,9 +41,24 @@ function DashboardContent({
     activeItem,
     setActiveItem,
     mobileMenuOpen,
-    setMobileMenuOpen
+    setMobileMenuOpen,
+    sidebarOpen,
+    setSidebarOpen
 }: any) {
     const { d } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        const handleResize = () => {
+            const shouldOpen = window.innerWidth >= 1300;
+            setSidebarOpen(shouldOpen);
+            if (!shouldOpen) setMobileMenuOpen(false);
+        };
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, [setSidebarOpen, setMobileMenuOpen]);
 
     return (
         <motion.div
@@ -50,23 +69,34 @@ function DashboardContent({
         >
             {/* Backdrop for mobile */}
             <AnimatePresence>
-                {mobileMenuOpen && (
+                {mobileMenuOpen && sidebarOpen && (
                     <div
-                        onClick={() => setMobileMenuOpen(false)}
+                        onClick={() => { setMobileMenuOpen(false); setSidebarOpen(false); }}
                         className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
                     />
                 )}
             </AnimatePresence>
+
+            {mounted && (
+                <button
+                    onClick={() => setSidebarOpen(!sidebarOpen)}
+                    className={cn("hidden lg:flex fixed top-1/2 -translate-y-1/2 z-40 p-1.5 rounded-r-lg border border-l-0 shadow-sm transition-all duration-300", d.hBtn, sidebarOpen ? "left-[280px]" : "left-0")}
+                >
+                    <ChevronRight className={cn("w-4 h-4 transition-transform", sidebarOpen ? "rotate-180" : "")} />
+                </button>
+            )}
 
             <Sidebar
                 activeItem={activeItem}
                 setActiveItem={setActiveItem}
                 mobileMenuOpen={mobileMenuOpen}
                 setMobileMenuOpen={setMobileMenuOpen}
+                sidebarOpen={sidebarOpen}
+                setSidebarOpen={setSidebarOpen}
             />
 
-            <main className="flex-1 flex flex-col overflow-hidden">
-                <Header setMobileMenuOpen={setMobileMenuOpen} />
+            <main className={cn("flex-1 flex flex-col overflow-hidden transition-all duration-300", sidebarOpen ? "lg:ml-[280px]" : "")}>
+                <Header setMobileMenuOpen={setMobileMenuOpen} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
                 <div className="flex-1 overflow-y-auto p-4 lg:p-10 space-y-6 scrollbar-none pb-10">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -74,7 +104,7 @@ function DashboardContent({
                             <StatsGrid />
 
                             {/* Sales Overview + Quick Actions */}
-                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                            <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 items-stretch">
                                 <SalesOverview />
                                 <QuickActions />
                             </div>

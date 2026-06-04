@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export function HeroPanel() {
     return (
-        <div className="relative w-full lg:w-[57%] h-auto min-h-[380px] lg:h-auto shrink-0 overflow-hidden lg:rounded-l-[2rem] bg-[#04055e] flex flex-col">
+        <div className="relative w-full lg:w-[57%] h-auto min-h-[380px] lg:h-auto shrink-0 lg:overflow-y-auto lg:rounded-l-[2rem] bg-[#04055e] flex flex-col">
             <div className="absolute inset-0 z-0">
                 <Image
                     src="/images/loginpageimage.png"
