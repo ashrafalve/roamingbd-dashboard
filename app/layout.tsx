@@ -10,6 +10,9 @@ const archivo = Archivo({
 export const metadata: Metadata = {
   title: "Roaming Bangladesh | Professional B2B Travel Marketplace",
   description: "One platform, endless possibilities for Travel Agents.",
+  icons: {
+    icon: "/icons/roaminglogo.png",
+  },
 };
 
 export default function RootLayout({
