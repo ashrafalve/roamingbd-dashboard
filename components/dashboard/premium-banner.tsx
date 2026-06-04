@@ -9,7 +9,7 @@ export function PremiumBanner() {
     const { dark } = useTheme();
 
     return (
-        <div className="relative rounded-sm overflow-hidden h-[265px] group shadow-2xl bg-[#030637]">
+        <div className="relative overflow-hidden h-[265px] group shadow-2xl bg-[#030637]">
             <Image src="/images/frameimage1.png" alt="" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" priority className="object-contain transition-transform duration-700 group-hover:scale-105" />
             <div className="absolute inset-0 bg-black/10 p-10 flex flex-col justify-between">
                 <div className="space-y-4">
