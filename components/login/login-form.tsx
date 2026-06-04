@@ -20,7 +20,7 @@ export function LoginForm({ onSignIn }: { onSignIn: (e?: React.FormEvent) => voi
                 </button>
             </div>
 
-            <div className="flex-1 flex flex-col justify-center lg:px-10 xl:px-14">
+            <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-10 xl:px-14">
                 <div className="w-full max-w-[400px] mx-auto py-8">
                     <div className="mb-8 text-center lg:text-left">
                         <h2 className="text-[1.8rem] lg:text-[2rem] font-black text-[#3B2963] tracking-tighter leading-tight mb-2">Welcome Back!</h2>
