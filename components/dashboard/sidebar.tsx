@@ -26,15 +26,11 @@ const sidebarItems = [
 export function Sidebar({
     activeItem,
     setActiveItem,
-    mobileMenuOpen,
-    setMobileMenuOpen,
     sidebarOpen,
     setSidebarOpen
 }: {
     activeItem: string;
     setActiveItem: (val: string) => void;
-    mobileMenuOpen: boolean;
-    setMobileMenuOpen: (val: boolean) => void;
     sidebarOpen: boolean;
     setSidebarOpen: (val: boolean) => void;
 }) {
@@ -48,7 +44,7 @@ export function Sidebar({
             <div className="p-8 h-full flex flex-col">
                 <div className="mb-10 pl-2 shrink-0 flex items-center justify-between">
                     <Image src="/icons/roaminglogo.png" alt="Logo" width={140} height={35} className="object-contain" style={{ width: "auto", height: "auto" }} />
-                    <button onClick={() => { setSidebarOpen(false); setMobileMenuOpen(false); }} className="p-2 text-white/40 hover:text-white">
+                    <button onClick={() => setSidebarOpen(false)} className="p-2 text-white/40 hover:text-white">
                         <ChevronRight className="w-5 h-5 rotate-180" />
                     </button>
                 </div>

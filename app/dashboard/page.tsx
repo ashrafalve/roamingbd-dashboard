@@ -37,6 +37,15 @@ export default function DashboardPage() {
     );
 }
 
+type DashboardContentProps = {
+    activeItem: string;
+    setActiveItem: (val: string) => void;
+    mobileMenuOpen: boolean;
+    setMobileMenuOpen: (val: boolean) => void;
+    sidebarOpen: boolean;
+    setSidebarOpen: (val: boolean) => void;
+};
+
 function DashboardContent({
     activeItem,
     setActiveItem,
@@ -44,12 +53,9 @@ function DashboardContent({
     setMobileMenuOpen,
     sidebarOpen,
     setSidebarOpen
-}: any) {
+}: DashboardContentProps) {
     const { d } = useTheme();
-    const [mounted, setMounted] = useState(false);
-
     useEffect(() => {
-        setMounted(true);
         const handleResize = () => {
             const shouldOpen = window.innerWidth >= 1300;
             setSidebarOpen(shouldOpen);
@@ -58,7 +64,8 @@ function DashboardContent({
         handleResize();
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
-    }, [setSidebarOpen, setMobileMenuOpen]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <motion.div
@@ -77,20 +84,17 @@ function DashboardContent({
                 )}
             </AnimatePresence>
 
-            {mounted && (
-                <button
-                    onClick={() => setSidebarOpen(!sidebarOpen)}
-                    className={cn("hidden lg:flex fixed top-1/2 -translate-y-1/2 z-40 p-1.5 rounded-r-lg border border-l-0 shadow-sm transition-all duration-300", d.hBtn, sidebarOpen ? "left-[280px]" : "left-0")}
-                >
-                    <ChevronRight className={cn("w-4 h-4 transition-transform", sidebarOpen ? "rotate-180" : "")} />
-                </button>
-            )}
+            <button
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                suppressHydrationWarning
+                className={cn("hidden lg:flex fixed top-1/2 -translate-y-1/2 z-40 p-1.5 rounded-r-lg border border-l-0 shadow-sm transition-all duration-300", d.hBtn, sidebarOpen ? "left-[280px]" : "left-0")}
+            >
+                <ChevronRight className={cn("w-4 h-4 transition-transform", sidebarOpen ? "rotate-180" : "")} />
+            </button>
 
             <Sidebar
                 activeItem={activeItem}
                 setActiveItem={setActiveItem}
-                mobileMenuOpen={mobileMenuOpen}
-                setMobileMenuOpen={setMobileMenuOpen}
                 sidebarOpen={sidebarOpen}
                 setSidebarOpen={setSidebarOpen}
             />

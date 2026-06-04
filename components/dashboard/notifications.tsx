@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useTheme } from "@/lib/theme-context";
 import { cn } from "@/lib/utils";
 
